@@ -50,7 +50,7 @@ jobs:
           fetch-depth: 0
 
       - name: Generate file
-        run: rm test/test*.txt && echo test3 > test/test1.txt
+        run: rm test/test*.txt && echo test > test/test1.txt
 
       - name: Commit files
         run: |
