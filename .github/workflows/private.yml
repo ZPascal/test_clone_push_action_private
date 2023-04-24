@@ -1,0 +1,33 @@
+name: PR tags checks private test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  dummy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          token: ${{ secrets.PRIVATE_PAT_TOKEN }}
+
+      - name: Generate file
+        run: rm test/test*.txt && echo test > test/test.txt
+
+      - name: Commit files
+        run: |
+          git config --local user.email "info@theiotstudio.com"
+          git config --local user.name "tis-service-user"
+          git add test
+          git commit -m "Test the action (private mode)"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@fe00f878bc3d0626ecdddddef6396f5a4049ca4a
+        with:
+          github_token: ${{ secrets.PRIVATE_PAT_TOKEN }}
+          repository: ZPascal/test_clone_push_action_private
