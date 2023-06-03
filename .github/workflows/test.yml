@@ -17,14 +17,14 @@ jobs:
           fetch-depth: 0
 
       - name: Generate file
-        run: rm test/test*.txt && echo test3 > test/test2.txt
+        run: rm test/test*.txt && echo test3 > test/test3.txt
 
       - name: Commit files
         run: |
           cd test 
           git config --local user.email "pascal.zimmermann@theiotstudio.com"
           git config --local user.name "ZPascal"
-          git add test2.txt
+          git add test3.txt
           git commit -m "Test the action"
 
       - name: Push changes
