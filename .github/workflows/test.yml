@@ -17,14 +17,14 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: Generate file
-        run: rm test/test*.txt && echo test2 > test/test1.txt
+        run: rm test/test*.txt && echo test2 > test/test2.txt
 
       - name: Commit files
         run: |
           cd test 
           git config --local user.email "pascal.zimmermann@theiotstudio.com"
           git config --local user.name "ZPascal"
-          git add test1.txt
+          git add test2.txt
           git commit -m "Test the action"
 
       - name: Push changes
